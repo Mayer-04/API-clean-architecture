@@ -1,5 +1,6 @@
 import { Server } from "./presentation/server";
 import { envs } from "./config";
+import { AppRoutes } from "./presentation/routes";
 
 const serverStart = async () => {
   const { PORT } = envs;
@@ -9,6 +10,7 @@ const serverStart = async () => {
   // TODO: Iniciar servidor
   new Server({
     port: PORT,
+    routes: AppRoutes.routes,
   }).start();
 };
 
