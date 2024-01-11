@@ -1,7 +1,7 @@
 import { Server } from "./presentation/server";
 import { envs } from "./config";
 
-const main = async () => {
+const serverStart = async () => {
   const { PORT } = envs;
 
   // TODO: Base de datos
@@ -13,5 +13,5 @@ const main = async () => {
 };
 
 (async () => {
-  await main();
+  await serverStart();
 })();

@@ -15,7 +15,7 @@ export class Server {
 
   async start() {
     this.app.listen(this.PORT, () => {
-      console.log("Server running on port 3000");
+      console.log(`Server running on port http://localhost:${this.PORT}`);
     });
   }
 }
