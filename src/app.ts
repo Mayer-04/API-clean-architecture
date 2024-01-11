@@ -1,3 +1,17 @@
-const nameApp = "API-clean-architecture";
+import { Server } from "./presentation/server";
+import { envs } from "./config";
 
-console.log(nameApp);
+const main = async () => {
+  const { PORT } = envs;
+
+  // TODO: Base de datos
+
+  // TODO: Iniciar servidor
+  new Server({
+    port: PORT,
+  }).start();
+};
+
+(async () => {
+  await main();
+})();
