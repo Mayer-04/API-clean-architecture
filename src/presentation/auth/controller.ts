@@ -4,7 +4,7 @@ import { AuthRespository, CustomError, RegisterUserDto } from "../../domain";
 export class AuthController {
   constructor(private readonly authRepository: AuthRespository) {}
 
-  // TODO: Manejar errores
+  // TODO: Verifica si el error es una instancia de la clase CustomError.
   private handleError(error: unknown, res: Response) {
     if (error instanceof CustomError) {
       const { statusCode, message } = error;
