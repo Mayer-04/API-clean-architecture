@@ -7,3 +7,5 @@ export * from "./dtos/auth/login-user.dto";
 export * from "./datasources/auth.datasource";
 // Repositories
 export * from "./repositories/auth.repository";
+// Errors
+export * from "./errors/custom.error";
