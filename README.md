@@ -6,6 +6,7 @@ API REST desarrollada en Node.js, TypeScript y Docker, que implementa un sistema
 
 1. Clona el repositorio: `git clone https://github.com/Mayer-04/API-clean-architecture.git`
 2. Instalar las dependencias: `pnpm install`
-3. Configura las variables de entorno necesarias, como las credenciales de la base de datos y la clave secreta para JWT.
-4. Ejecutar `pnpm run dev` para levantar el proyecto en modo desarrollo.
-5. Accede a la API desde `http://localhost:[puerto]`
+3. Clonar .env.template a .env para configurar las variables de entorno. Credenciales de la base de datos y la clave secreta para JWT.
+4. En caso de necesitar base de datos, configurar el docker-compose.yml y ejecutar `docker-compose up -d` para levantar los servicios deseados.
+5. Ejecutar `pnpm run dev` para levantar el proyecto en modo desarrollo.
+6. Accede a la API desde `http://localhost:[puerto]`
