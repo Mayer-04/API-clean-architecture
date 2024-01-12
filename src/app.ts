@@ -1,19 +1,24 @@
 import { Server } from "./presentation/server";
 import { envs } from "./config";
 import { AppRoutes } from "./presentation/routes";
+import { mongoDatabase } from "./data/mongodb";
 
-const serverStart = async () => {
-  const { PORT } = envs;
+const startServer = async () => {
+  const { PORT, MONGO_URI, MONGO_DB_NAME } = envs;
 
-  // TODO: Base de datos
+  await mongoDatabase.connect({
+    mongoUrl: MONGO_URI,
+    dbName: MONGO_DB_NAME,
+  });
 
-  // TODO: Iniciar servidor
-  new Server({
+  const server = new Server({
     port: PORT,
     routes: AppRoutes.routes,
-  }).start();
+  });
+
+  server.start();
 };
 
 (async () => {
-  await serverStart();
+  await startServer();
 })();
