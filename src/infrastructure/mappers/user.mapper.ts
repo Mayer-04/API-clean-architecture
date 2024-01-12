@@ -1,8 +1,8 @@
 import { CustomError, UserEntity } from "../../domain";
 
 export class UserMapper {
-  static userEntityFromObject(object: { [key: string]: any }) {
-    const { id, _id, name, email, password, roles } = object;
+  static userEntityFromObject(data: { [key: string]: any }) {
+    const { id, _id, name, email, password, roles } = data;
 
     if (!_id || !id) {
       throw CustomError.badRequest("Missing id");

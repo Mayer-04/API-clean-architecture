@@ -1,8 +1,18 @@
 import { Request, Response } from "express";
-import { AuthRespository, RegisterUserDto } from "../../domain";
+import { AuthRespository, CustomError, RegisterUserDto } from "../../domain";
 
 export class AuthController {
   constructor(private readonly authRepository: AuthRespository) {}
+
+  // TODO: Manejar errores
+  private handleError(error: unknown, res: Response) {
+    if (error instanceof CustomError) {
+      const { statusCode, message } = error;
+      return res.status(statusCode).json({ error: message });
+    }
+    console.log(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 
   // TODO: Registrar casos de uso
   registerUser = (req: Request, res: Response) => {
@@ -13,7 +23,7 @@ export class AuthController {
     this.authRepository
       .register(registerUserDto!)
       .then((user) => res.status(201).json(user))
-      .catch((error) => res.status(500).json({ error }));
+      .catch((error) => this.handleError(error, res));
   };
 
   loginUser = (req: Request, res: Response) => {
