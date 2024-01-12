@@ -1,3 +1,5 @@
+import { BcryptAdapter } from "../../config";
+import { UserModel } from "../../data/mongodb";
 import {
   AuthDatasource,
   LoginUserDto,
@@ -6,18 +8,32 @@ import {
   CustomError,
 } from "../../domain";
 
+type HashFunction = (password: string) => Promise<string>;
+type CompareFunction = (password: string, hashed: string) => Promise<boolean>;
+
 export class AuthDatasourceImpl implements AuthDatasource {
+  constructor(
+    private readonly hashPassword: HashFunction = BcryptAdapter.hash,
+    private readonly comparePassword: CompareFunction = BcryptAdapter.compare
+  ) {}
+
   async register(registerUserDto: RegisterUserDto): Promise<UserEntity> {
     const { name, email, password } = registerUserDto;
 
     try {
-      // TODO: Verificar si el correo existe
+      const userExists = await UserModel.findOne({ email });
 
-      // TODO: Hashear la contraseña
+      if (userExists) {
+        throw CustomError.badRequest("User could not be created");
+      }
 
-      // TODO: Mappear el objeto UserEntity
+      const user = await UserModel.create({
+        name,
+        email,
+        password: this.hashPassword(password),
+      });
 
-      return new UserEntity(" 1", name, email, password, ["ADMIN_ROLE"]);
+      return new UserEntity(user.id, name, email, user.password, user.roles);
     } catch (error) {
       if (error instanceof CustomError) {
         throw error;
