@@ -1,6 +1,12 @@
+# dependencies
 node_modules/
-.env
-mongo/
-postgresql/
+# build output
 dist/
+# environment variables
+.env
+# docker compose
+mongo/
+/postgresql
 
+package-lock.json
+pnpm-lock.yaml
