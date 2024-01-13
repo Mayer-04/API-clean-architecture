@@ -5,8 +5,8 @@ dist/
 # environment variables
 .env
 # docker compose
-mongo/
-/postgresql
+/mongo
+/postgres
 
 package-lock.json
 pnpm-lock.yaml
