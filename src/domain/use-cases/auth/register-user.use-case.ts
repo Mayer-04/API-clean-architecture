@@ -1,7 +1,7 @@
 import { Jwt } from "../../../config";
 import { RegisterUserDto } from "../../dtos/auth/register-user.dto";
 import { CustomError } from "../../errors/custom.error";
-import { AuthRespository } from "../../repositories/auth.repository";
+import { AuthRepository } from "../../repositories/auth.repository";
 
 interface UserToken {
   token: string;
@@ -20,7 +20,7 @@ interface RegisterUserUseCase {
 
 export class RegisterUser implements RegisterUserUseCase {
   constructor(
-    private readonly authRepository: AuthRespository,
+    private readonly authRepository: AuthRepository,
     private readonly signToken: SignToken = Jwt.generateToken
   ) {}
   async execute(registerUserDto: RegisterUserDto): Promise<UserToken> {

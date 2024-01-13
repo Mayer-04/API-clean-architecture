@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import {
-  AuthRespository,
+  AuthRepository,
   CustomError,
   LoginUser,
   LoginUserDto,
@@ -10,7 +10,7 @@ import {
 import { UserModel } from "../../data/mongodb";
 
 export class AuthController {
-  constructor(private readonly authRepository: AuthRespository) {}
+  constructor(private readonly authRepository: AuthRepository) {}
 
   // TODO: Verifica si el error es una instancia de la clase CustomError.
   private handleError(error: unknown, res: Response) {

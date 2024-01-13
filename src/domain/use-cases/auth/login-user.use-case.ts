@@ -2,7 +2,7 @@ import { Jwt } from "../../../config";
 import { LoginUserDto } from "../../dtos/auth/login-user.dto";
 import { RegisterUserDto } from "../../dtos/auth/register-user.dto";
 import { CustomError } from "../../errors/custom.error";
-import { AuthRespository } from "../../repositories/auth.repository";
+import { AuthRepository } from "../../repositories/auth.repository";
 
 interface UserToken {
   token: string;
@@ -21,7 +21,7 @@ interface LoginUserUseCase {
 
 export class LoginUser implements LoginUserUseCase {
   constructor(
-    private readonly authResository: AuthRespository,
+    private readonly authResository: AuthRepository,
     private readonly signToken: SignToken = Jwt.generateToken
   ) {}
 

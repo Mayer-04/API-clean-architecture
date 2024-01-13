@@ -1,10 +1,8 @@
-export class UserEntity {
-  constructor(
-    public id: string,
-    public name: string,
-    public email: string,
-    public password: string,
-    public role: string[],
-    public img?: string
-  ) {}
+export interface UserEntity {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  roles: string[];
+  img?: string;
 }

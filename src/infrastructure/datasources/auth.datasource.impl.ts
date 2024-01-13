@@ -57,7 +57,7 @@ export class AuthDatasourceImpl implements AuthDatasource {
       return UserMapper.userEntityFromObject(user);
     } catch (error) {
       console.log(error);
-      throw CustomError.internalServerError("Internal server error");
+      throw CustomError.internalServerError("Credentials are not valid");
     }
   }
 }
