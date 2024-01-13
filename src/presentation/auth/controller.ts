@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AuthRespository, CustomError, RegisterUserDto } from "../../domain";
-
+import { Jwt } from "../../config";
 export class AuthController {
   constructor(private readonly authRepository: AuthRespository) {}
 
@@ -22,7 +22,12 @@ export class AuthController {
 
     this.authRepository
       .register(registerUserDto!)
-      .then((user) => res.status(201).json(user))
+      .then((user) =>
+        res.status(201).json({
+          user,
+          token: Jwt.generateToken({ email: user.email }),
+        })
+      )
       .catch((error) => this.handleError(error, res));
   };
 
