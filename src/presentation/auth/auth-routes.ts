@@ -15,7 +15,6 @@ export class AuthRoutes {
 
     router.post("/login", controller.loginUser);
     router.post("/register", controller.registerUser);
-    // TODO: Ruta que nos da informacin de todos los usuarios
     router.get("/", AuthMiddleware.validateToken, controller.getUsers);
 
     return router;
