@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { AuthRespository, CustomError, RegisterUserDto } from "../../domain";
 import { Jwt } from "../../config";
+import { UserModel } from "../../data/mongodb";
 export class AuthController {
   constructor(private readonly authRepository: AuthRespository) {}
 
@@ -22,10 +23,10 @@ export class AuthController {
 
     this.authRepository
       .register(registerUserDto!)
-      .then((user) =>
+      .then(async (user) =>
         res.status(201).json({
           user,
-          token: Jwt.generateToken({ email: user.email }),
+          token: await Jwt.generateToken({ id: user.id }),
         })
       )
       .catch((error) => this.handleError(error, res));
@@ -33,5 +34,13 @@ export class AuthController {
 
   loginUser = (req: Request, res: Response) => {
     res.json("Login Controller");
+  };
+
+  getUsers = (req: Request, res: Response) => {
+    UserModel.find()
+      .then((users) => {
+        res.json({ user: req.body.user });
+      })
+      .catch((error) => res.status(500).json(error));
   };
 }

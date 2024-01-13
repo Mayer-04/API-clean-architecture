@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AuthController } from "./controller";
 import { AuthDatasourceImpl, AuthRepositoryImpl } from "../../infrastructure";
+import { AuthMiddleware } from "../middlewares/auth.middleware";
 
 export class AuthRoutes {
   static get routes(): Router {
@@ -14,6 +15,8 @@ export class AuthRoutes {
 
     router.post("/login", controller.loginUser);
     router.post("/register", controller.registerUser);
+    // TODO: Ruta que nos da informacin de todos los usuarios
+    router.get("/", AuthMiddleware.validateToken, controller.getUsers);
 
     return router;
   }
