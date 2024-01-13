@@ -1,6 +1,6 @@
 # API-clean-architecture
 
-API REST desarrollada en Node.js, TypeScript y Docker, que implementa un sistema de autenticación utilizando Clean Architecture, JSON Web Tokens (JWT) y MongoDB como base de datos ☘️.
+API REST desarrollada en Node.js, TypeScript y Docker, que implementa un sistema de autenticación utilizando Clean Architecture, JSON Web Tokens (JWT) y como bases de datos, se emplea MongoDB con Mongoose y PostgreSQL con Prisma ORM ☘️.
 
 ## Instalación y Uso
 
