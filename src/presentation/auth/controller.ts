@@ -12,7 +12,6 @@ import { UserModel } from "../../data/mongodb";
 export class AuthController {
   constructor(private readonly authRepository: AuthRepository) {}
 
-  // TODO: Verifica si el error es una instancia de la clase CustomError.
   private handleError(error: unknown, res: Response) {
     if (error instanceof CustomError) {
       const { statusCode, message } = error;
@@ -22,7 +21,6 @@ export class AuthController {
     return res.status(500).json({ error: "Internal server error" });
   }
 
-  // TODO: Registrar casos de uso
   registerUser = (req: Request, res: Response) => {
     const [error, registerUserDto] = RegisterUserDto.create(req.body);
 

@@ -24,13 +24,12 @@ export class RegisterUser implements RegisterUserUseCase {
     private readonly signToken: SignToken = Jwt.generateToken
   ) {}
   async execute(registerUserDto: RegisterUserDto): Promise<UserToken> {
-    // TODO: Crear usuario
-
     const user = await this.authRepository.register(registerUserDto);
-    // TODO: Token
+
     const token = await this.signToken({ id: user.id }, "2h");
-    if (!token)
+    if (!token) {
       throw CustomError.internalServerError("Failed to generate token");
+    }
 
     return {
       token,

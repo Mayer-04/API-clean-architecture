@@ -7,7 +7,6 @@ export class RegisterUserDto {
     public password: string
   ) {}
 
-  // TODO: Recibe un objeto con las propiedades name, email y password y devuelve un array de errores
   static create(object: {
     name: string;
     email: string;

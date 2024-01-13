@@ -9,7 +9,6 @@ import {
 export class AuthRepositoryImpl implements AuthRepository {
   constructor(private readonly authDatasource: AuthDatasource) {}
 
-  // TODO: Recibir un datasource y lo manda llamar
   register(registerUserDto: RegisterUserDto): Promise<UserEntity> {
     return this.authDatasource.register(registerUserDto);
   }
