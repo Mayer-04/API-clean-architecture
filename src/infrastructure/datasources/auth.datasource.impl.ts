@@ -14,8 +14,8 @@ type CompareFunction = (password: string, hashed: string) => Promise<boolean>;
 
 export class AuthDatasourceImpl implements AuthDatasource {
   constructor(
-    private readonly hashPassword: HashFunction = BcryptAdapter.hash,
-    private readonly comparePassword: CompareFunction = BcryptAdapter.compare
+    private readonly hashPassword: HashFunction = BcryptAdapter.hashPassword,
+    private readonly comparePassword: CompareFunction = BcryptAdapter.comparePassword
   ) {}
 
   async register(registerUserDto: RegisterUserDto): Promise<UserEntity> {
@@ -51,7 +51,7 @@ export class AuthDatasourceImpl implements AuthDatasource {
       const user = await UserModel.findOne({ email });
       if (!user) throw CustomError.badRequest("User does not exists - email");
 
-      const isMatching = this.comparePassword(password, user.password);
+      const isMatching = await this.comparePassword(password, user.password);
       if (!isMatching) throw CustomError.badRequest("Password is not valid");
 
       return UserMapper.userEntityFromObject(user);

@@ -1,5 +1,11 @@
 import { Validators } from "../../../config";
 
+interface Object {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export class RegisterUserDto {
   private constructor(
     public name: string,
@@ -7,11 +13,7 @@ export class RegisterUserDto {
     public password: string
   ) {}
 
-  static create(object: {
-    name: string;
-    email: string;
-    password: string;
-  }): [string?, RegisterUserDto?] {
+  static create(object: Object): [string?, RegisterUserDto?] {
     const { name, email, password } = object;
 
     if (!name) return ["Name is required"];
