@@ -21,34 +21,55 @@ export class AuthController {
     return res.status(500).json({ error: "Internal server error" });
   }
 
-  registerUser = (req: Request, res: Response) => {
-    const [error, registerUserDto] = RegisterUserDto.create(req.body);
+  registerUser = async (req: Request, res: Response) => {
+    const { name, email, password }: RegisterUserDto = req.body;
 
-    if (error) return res.status(400).json({ error });
+    const [error, registerUserDto] = RegisterUserDto.create({
+      name,
+      email,
+      password,
+    });
 
-    new RegisterUser(this.authRepository)
-      .execute(registerUserDto!)
-      .then((user) => res.json(user))
-      .catch((error) => this.handleError(error, res));
+    if (error) {
+      return res.status(400).json({ error });
+    }
+
+    try {
+      const user = await new RegisterUser(this.authRepository).execute(
+        registerUserDto!
+      );
+      res.json(user);
+    } catch (error) {
+      this.handleError(error, res);
+    }
   };
 
-  loginUser = (req: Request, res: Response) => {
-    const [error, loginUserDto] = LoginUserDto.create(req.body);
-    if (error) return res.status(400).json({ error });
+  loginUser = async (req: Request, res: Response) => {
+    const { email, password }: LoginUserDto = req.body;
 
-    new LoginUser(this.authRepository)
-      .execute(loginUserDto!)
-      .then((data) => res.json(data))
-      .catch((error) => this.handleError(error, res));
+    const [error, loginUserDto] = LoginUserDto.create({ email, password });
+
+    if (error) {
+      return res.status(400).json({ error });
+    }
+
+    try {
+      const data = await new LoginUser(this.authRepository).execute(
+        loginUserDto!
+      );
+      res.json(data);
+    } catch (error) {
+      this.handleError(error, res);
+    }
   };
 
-  getUsers = (req: Request, res: Response) => {
-    const user = req.body.user;
-
-    UserModel.find()
-      .then((users) => {
-        res.json({ user });
-      })
-      .catch((error) => res.status(500).json(error));
+  getUsers = async (req: Request, res: Response) => {
+    try {
+      const user = req.body.user;
+      const users = await UserModel.find();
+      res.json({ user, users });
+    } catch (error) {
+      res.status(500).json(error);
+    }
   };
 }
