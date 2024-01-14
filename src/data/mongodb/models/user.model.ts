@@ -15,9 +15,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    img: {
-      type: String,
-    },
     roles: {
       type: [String],
       enum: ["ADMIN_ROLE", "USER_ROLE"],

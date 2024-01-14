@@ -20,13 +20,7 @@ model Register {
   name      String
   email     String   @unique
   password  String
-  img       String?
   roles     UserRole @default(USER_ROLE)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model Login {
-  email    String @unique
-  password String
 }

@@ -4,5 +4,4 @@ export interface UserEntity {
   email: string;
   password: string;
   roles: string[];
-  img?: string;
 }

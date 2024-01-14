@@ -20,6 +20,8 @@ export class AuthMiddleware {
 
     const tokenValue = token.split(" ").at(1) ?? "";
 
+    req.headers.authorization = tokenValue;
+
     try {
       const payload = await Jwt.validateToken<{ id: string }>(tokenValue);
 

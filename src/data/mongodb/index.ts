@@ -1,2 +1,2 @@
-export * from "./mongo-database";
+export * from "./mongo-connection";
 export * from "./models/user.model";
