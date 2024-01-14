@@ -7,7 +7,7 @@ import {
   UserEntity,
   CustomError,
 } from "../../domain";
-import { UserMapper } from "../mappers/user.mapper";
+import { PostgreMapper } from "../mappers/postgre.mapper";
 
 type HashFunction = (password: string) => Promise<string>;
 type CompareFunction = (password: string, hashed: string) => Promise<boolean>;
@@ -42,7 +42,7 @@ export class PostgreAuthDatasource implements AuthDatasource {
         },
       });
 
-      return UserMapper.userEntityFromObject(user);
+      return PostgreMapper.userEntityFromObject(user);
     } catch (error) {
       if (error instanceof CustomError) {
         throw error;
@@ -54,14 +54,16 @@ export class PostgreAuthDatasource implements AuthDatasource {
     const { email, password } = loginUserDto;
 
     try {
-      const user = await prismaClient.login.findUnique({ where: { email } });
+      const user = await prismaClient.register.findUnique({
+        where: { email: email },
+      });
 
       if (!user) throw CustomError.badRequest("User does not exists - email");
 
       const isMatching = await this.comparePassword(password, user.password);
       if (!isMatching) throw CustomError.badRequest("Password is not valid");
 
-      return UserMapper.userEntityFromObject(user);
+      return PostgreMapper.userEntityFromObject(user);
     } catch (error) {
       console.log(error);
       throw CustomError.internalServerError("Credentials are not valid");
