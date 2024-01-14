@@ -43,9 +43,11 @@ export class AuthController {
   };
 
   getUsers = (req: Request, res: Response) => {
+    const user = req.body.user;
+
     UserModel.find()
       .then((users) => {
-        res.json({ user: req.body.user });
+        res.json({ user });
       })
       .catch((error) => res.status(500).json(error));
   };
