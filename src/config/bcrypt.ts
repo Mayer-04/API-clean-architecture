@@ -7,7 +7,7 @@ export class BcryptAdapter {
       const hashedPassword = await hash(password, saltRounds);
       return hashedPassword;
     } catch (error) {
-      throw error;
+      throw new Error(`Error hashing password: ${error}`);
     }
   }
 
@@ -15,7 +15,11 @@ export class BcryptAdapter {
     password: string,
     hashed: string
   ): Promise<boolean> {
-    const passwordMatches = await compare(password, hashed);
-    return passwordMatches;
+    try {
+      const passwordMatches = await compare(password, hashed);
+      return passwordMatches;
+    } catch (error) {
+      throw new Error(`Error comparing password: ${error}`);
+    }
   }
 }

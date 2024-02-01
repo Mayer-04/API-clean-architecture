@@ -2,7 +2,7 @@ import express, { Router } from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 
-interface Options {
+interface ServerOptions {
   port: number;
   routes: Router;
 }
@@ -12,7 +12,7 @@ export class Server {
   private readonly PORT: number;
   private readonly routes: Router;
 
-  constructor(options: Options) {
+  constructor(options: ServerOptions) {
     const { port, routes } = options;
     this.PORT = port;
     this.routes = routes;
@@ -28,9 +28,7 @@ export class Server {
 
   async start() {
     this.app.disable("x-powered-by");
-
     this.setupMiddlewares();
-
     this.app.listen(this.PORT, () => {
       console.log(`Server running on port http://localhost:${this.PORT}`);
     });

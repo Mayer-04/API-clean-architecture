@@ -13,7 +13,7 @@ export class mongoDatabase {
       await connect(mongoUrl, { dbName });
       console.log(`Mongo connected to ${dbName} database ✅`);
     } catch (error) {
-      throw error;
+      throw new Error(`Error connecting to MongoDB database: ${error}`);
     }
   }
 }
