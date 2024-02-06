@@ -5,7 +5,8 @@ API REST desarrollada en Node.js, TypeScript y Docker, que implementa un sistema
 ## Requisitos Previos
 
 - [Node.js](https://nodejs.org/en) (v16.0.0 o superior)
-- [pnpm](https://pnpm.io/es/) (puedes instalarlo globalmente con `npm install -g pnpm` o habilitando Corepack con `corepack enable pnpm` desde la v16.13 de Node.js)
+- [pnpm](https://pnpm.io/es/) (Puedes instalarlo globalmente con `npm install -g pnpm` o habilitando Corepack con `corepack enable pnpm` desde la v16.13 de Node.js)
+- [Docker](https://www.docker.com) (Se requiere Docker para ejecutar los servicios deseados, base de datos MongoDB y PostgreSQL)
 
 ## Instalación y Uso
 
@@ -16,7 +17,12 @@ API REST desarrollada en Node.js, TypeScript y Docker, que implementa un sistema
    ```
 
 2. Instalar las dependencias: `pnpm install`
-3. Clonar **.env.template** a **.env** para configurar las variables de entorno. Credenciales de la base de datos y la clave secreta para JWT.
-4. En caso de necesitar base de datos, configurar el **docker-compose.yml** y ejecutar `docker-compose up -d` para levantar los servicios deseados.
+3. Clonar el archivo **.env.template** a **.env** para configurar las variables de entorno. Credenciales de la base de datos y la clave secreta para JWT.
+4. Configurar el **docker-compose.yml** y ejecutar:
+
+   ```bash
+   docker-compose up -d
+   ```
+
 5. Ejecutar `pnpm run dev` para levantar el proyecto en modo desarrollo.
 6. Accede a la API desde `http://localhost:[puerto]`
