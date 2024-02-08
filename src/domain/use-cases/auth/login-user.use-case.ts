@@ -1,8 +1,8 @@
-import { Jwt } from "../../../config";
-import { LoginUserDto } from "../../dtos/auth/login-user.dto";
-import { RegisterUserDto } from "../../dtos/auth/register-user.dto";
-import { CustomError } from "../../errors/custom.error";
-import { AuthRepository } from "../../repositories/auth.repository";
+import { Jwt } from "@config/index";
+import { LoginUserDto } from "@domain/dtos/auth/login-user.dto";
+import { RegisterUserDto } from "@domain/dtos/auth/register-user.dto";
+import { CustomError } from "@domain/errors/custom.error";
+import { AuthRepository } from "@domain/repositories/auth.repository";
 
 interface UserToken {
   token: string;

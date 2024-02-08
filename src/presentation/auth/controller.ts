@@ -6,8 +6,8 @@ import {
   LoginUserDto,
   RegisterUser,
   RegisterUserDto,
-} from "../../domain";
-import { UserModel } from "../../data/mongodb";
+} from "@domain/index";
+import { UserModel } from "@data/mongodb";
 
 export class AuthController {
   constructor(private readonly authRepository: AuthRepository) {}

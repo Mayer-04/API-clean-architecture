@@ -1,13 +1,13 @@
 import { PrismaClient } from "@prisma/client";
-import { BcryptAdapter } from "../../config";
+import { BcryptAdapter } from "@config/index";
 import {
   AuthDatasource,
   LoginUserDto,
   RegisterUserDto,
   UserEntity,
   CustomError,
-} from "../../domain";
-import { PostgreMapper } from "../mappers/postgre.mapper";
+} from "@domain/index";
+import { PostgreMapper } from "@infrastructure/mappers/postgre.mapper";
 
 type HashFunction = (password: string) => Promise<string>;
 type CompareFunction = (password: string, hashed: string) => Promise<boolean>;

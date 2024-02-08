@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { Jwt } from "../../config";
-import { UserModel } from "../../data/mongodb";
+import { Jwt } from "@config/index";
+import { UserModel } from "@data/mongodb";
 
 export class AuthMiddleware {
   static validateToken = async (

@@ -4,7 +4,7 @@ import {
   LoginUserDto,
   RegisterUserDto,
   UserEntity,
-} from "../../domain";
+} from "@domain/index";
 
 export class AuthRepositoryImpl implements AuthRepository {
   constructor(private readonly authDatasource: AuthDatasource) {}

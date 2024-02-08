@@ -1,4 +1,4 @@
-import { Validators } from "../../../config";
+import { Validators } from "@config/index";
 
 interface Object {
   name: string;

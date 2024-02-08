@@ -1,13 +1,13 @@
-import { BcryptAdapter } from "../../config";
-import { UserModel } from "../../data/mongodb";
+import { BcryptAdapter } from "@config/index";
+import { UserModel } from "@data/mongodb";
 import {
   AuthDatasource,
   LoginUserDto,
   RegisterUserDto,
   UserEntity,
   CustomError,
-} from "../../domain";
-import { UserMapper } from "../mappers/user.mapper";
+} from "@domain/index";
+import { UserMapper } from "@infrastructure/mappers/user.mapper";
 
 type HashFunction = (password: string) => Promise<string>;
 type CompareFunction = (password: string, hashed: string) => Promise<boolean>;

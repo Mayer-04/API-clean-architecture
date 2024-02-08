@@ -1,7 +1,7 @@
 import { Server } from "@presentation/server";
-import { envs } from "./config";
-import { AppRoutes } from "./presentation/routes";
-import { mongoDatabase } from "./data/mongodb";
+import { envs } from "@config/index";
+import { AppRoutes } from "@presentation/routes";
+import { mongoDatabase } from "@data/mongodb";
 
 const startServer = async () => {
   const { PORT, MONGO_URI, MONGO_DB_NAME } = envs;

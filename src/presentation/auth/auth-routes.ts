@@ -4,8 +4,8 @@ import {
   AuthDatasourceImpl,
   AuthRepositoryImpl,
   PostgreAuthDatasource,
-} from "../../infrastructure";
-import { AuthMiddleware } from "../middlewares/auth.middleware";
+} from "@infrastructure/index";
+import { AuthMiddleware } from "@presentation/middlewares/auth.middleware";
 
 export class AuthRoutes {
   static get routes(): Router {
