@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": ".ts,.js",
   "ignore": [],
-  "exec": "pnpm exec ts-node ./src/app.ts"
+  "exec": "pnpm exec ts-node -r tsconfig-paths/register ./src/app.ts"
 }

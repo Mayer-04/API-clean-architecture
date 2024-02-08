@@ -1,11 +1,11 @@
 {
-  "name": "api-clean-architecture",
+  "name": "clean-architecture-api",
   "version": "1.0.0",
   "description": "API REST que implementa un sistema de autenticación utilizando Clean Architecture",
   "main": "app.ts",
   "scripts": {
     "dev": "nodemon",
-    "build": "rimraf ./dist && tsc",
+    "build": "rimraf ./dist && tsc && tsc-alias",
     "start": "pnpm run build && node dist/app.js",
     "prisma:generate": "prisma generate"
   },
@@ -35,6 +35,8 @@
     "prisma": "5.9.1",
     "rimraf": "5.0.5",
     "ts-node": "10.9.2",
+    "tsc-alias": "1.8.8",
+    "tsconfig-paths": "4.2.0",
     "typescript": "5.3.3"
   }
 }

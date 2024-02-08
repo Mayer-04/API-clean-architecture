@@ -1,4 +1,4 @@
-import { Server } from "./presentation/server";
+import { Server } from "@presentation/server";
 import { envs } from "./config";
 import { AppRoutes } from "./presentation/routes";
 import { mongoDatabase } from "./data/mongodb";
