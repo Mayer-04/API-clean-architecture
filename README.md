@@ -24,5 +24,6 @@ API REST desarrollada en Node.js, TypeScript y Docker, que implementa un sistema
    docker-compose up -d
    ```
 
-5. Ejecutar `pnpm run dev` para levantar el proyecto en modo desarrollo.
-6. Accede a la API desde `http://localhost:[puerto]`
+5. Ejecutar `pnpm run prisma:generate` para generar el cliente Prisma.
+6. Ejecutar `pnpm run dev` para levantar el proyecto en modo desarrollo.
+7. Accede a la API desde `http://localhost:[puerto]`

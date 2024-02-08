@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "build": "rimraf ./dist && tsc",
-    "start": "pnpm run build && node dist/app.js"
+    "start": "pnpm run build && node dist/app.js",
+    "prisma:generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
